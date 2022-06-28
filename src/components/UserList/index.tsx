@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container } from './styles';
+import { Modal } from '../Modal';
 
-export const UserList = () => {
+export const UserList: React.FC = () => {
     const users = [
-        { name: 'Matthew Rubèn', id: 1, user: '@matthewruben', picture: 'UserImg/1.jpg' },
+        { name: 'Matthew Rubèn', id: 1, user: '@matthewruben', picture: '/UserImg/1.jpg' },
         { name: 'Nadzeya Borbála', id: 2, user: '@nadzeyaborbala', picture: 'UserImg/2.jpg' },
         { name: 'Byelobog Demophon', id: 3, user: '@byelobogdemophon', picture: 'UserImg/3.jpg' },
         { name: 'Myla Khadija', id: 4, user: '@mylakhadija', picture: 'UserImg/4.jpg' },
@@ -14,6 +15,13 @@ export const UserList = () => {
         { name: 'Natalie Mooren', id: 9, user: '@nataliemooren', picture: 'UserImg/9.jpg' },
         { name: 'Jacobs Leedgard', id: 10, user: '@jacobsleedgard', picture: 'UserImg/10.jpg' }
     ];
+    const [selectUser, setSelectUser] = useState('');
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    const openModal = (user: string) => {
+        setModalIsOpen(true);
+        setSelectUser(user);
+    }
 
     return (
         <>
@@ -31,10 +39,11 @@ export const UserList = () => {
                                 <span>Username: {user.user}</span>
                             </div>
                         </div>
-                        <button><strong>Pay</strong></button>
+                        <button onClick={() => openModal(user.name)}><strong>Pagar</strong></button>
                     </div>
                 </Container>
             ))}
+            { modalIsOpen && <Modal userModal={selectUser} onClose={() => setModalIsOpen(false)} />}
         </>
     );
 }
