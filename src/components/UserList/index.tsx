@@ -4,7 +4,7 @@ import { Modal } from '../Modal';
 
 export const UserList: React.FC = () => {
     const users = [
-        { name: 'Matthew Rubèn', id: 1, user: '@matthewruben', picture: '/UserImg/1.jpg' },
+        { name: 'Matthew Rubèn', id: 1, user: '@matthewruben', picture: 'UserImg/1.jpg' },
         { name: 'Nadzeya Borbála', id: 2, user: '@nadzeyaborbala', picture: 'UserImg/2.jpg' },
         { name: 'Byelobog Demophon', id: 3, user: '@byelobogdemophon', picture: 'UserImg/3.jpg' },
         { name: 'Myla Khadija', id: 4, user: '@mylakhadija', picture: 'UserImg/4.jpg' },
