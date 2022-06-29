@@ -1,20 +1,21 @@
 import React from "react";
 import { Container, ModalContent } from "./styles";
 import { InputCurrency } from "../InputCurrency";
-import { Cards } from "../Cards";
+import { Cards, cards } from "../Cards";
+import { PaymentResponse } from "../PaymentResponse";
 
 export interface Props {
     userModal: string;
     onClose: () => void;
 }
 
-export const Modal: React.FC<Props> = ({ onClose = () => {}, userModal }) => {   
-    
-    const paySubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        
+export const Modal: React.FC<Props> = ({ onClose, userModal }) => {
+
+    const paySubmit = (event: React.FormEvent) => {
+        event.preventDefault();
+
     }
-    
+
     return (
         <Container>
             <ModalContent>

@@ -26,16 +26,8 @@ export const Container = styled.div`
     .userInfo {
         width: 100%;
         color #FFF; 
-    }
-    .id_user {
         display: flex;
-        margin-top: 5px;
-        color: #e0e0e0;
-        font-size: 15px;
-    }
-    .space {
-        margin-left: 10px;
-        margin-right: 10px;
+        flex-direction: column;
     }
     button {
         width: 80px;

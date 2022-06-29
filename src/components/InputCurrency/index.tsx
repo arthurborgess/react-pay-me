@@ -1,18 +1,18 @@
 import { Container } from "./styles";
 
 export const InputCurrency = () => {
-    const maskMoney = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const maskMoney = (event: React.KeyboardEvent<HTMLInputElement>) => {
 
-        e.preventDefault();
+        event.preventDefault();
         
-        if ((/[0-9]+/g).test(e.key)) {
-            e.currentTarget.value += e.key;
+        if ((/[0-9]+/g).test(event.key)) {
+            event.currentTarget.value += event.key;
         }
     
-        let formattedInput = Number(e.currentTarget.value.replace(/[^0-9]+/g, ''));
+        let formattedInput = Number(event.currentTarget.value.replace(/[^0-9]+/g, ''));
         formattedInput /= 100;
     
-        e.currentTarget.value = Intl.NumberFormat('pt-BR', {
+        event.currentTarget.value = Intl.NumberFormat('pt-BR', {
             style: 'currency',
             currency: 'BRL'
         }).format(formattedInput);;

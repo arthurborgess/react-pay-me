@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -43,7 +43,6 @@ export const ModalContent = styled.div`
         margin-left: 6px;
         color: #d1da59;
     }
-    
     .buttons {
         display: flex;
         margin-top: 45px;
