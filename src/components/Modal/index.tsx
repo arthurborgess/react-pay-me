@@ -1,12 +1,19 @@
 import React from "react";
 import { Container, ModalContent } from "./styles";
+import { InputCurrency } from "../InputCurrency";
+import { Cards } from "../Cards";
 
 export interface Props {
     userModal: string;
     onClose: () => void;
 }
 
-export const Modal: React.FC<Props> = ({ onClose = () => {}, userModal }) => {    
+export const Modal: React.FC<Props> = ({ onClose = () => {}, userModal }) => {   
+    
+    const paySubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        
+    }
     
     return (
         <Container>
@@ -15,15 +22,12 @@ export const Modal: React.FC<Props> = ({ onClose = () => {}, userModal }) => {
                     <span>Pagamento para </span>
                     <span className="userName">{userModal}</span>
                 </div>
-                <form className="content">
-                    <input type="text" placeholder='R$ 0,00' required={true} />
-                    <select>
-                        <option value="Test">Test</option>
-                        <option value="Test 11">Test 11</option>
-                    </select>
+                <form className="content" onSubmit={paySubmit}>
+                    <InputCurrency />
+                    <Cards />
                     <div className="buttons">
                         <button className="cancel" onClick={onClose}>Cancelar</button>
-                        <button className="pay">Pagar</button>
+                        <button type="submit" className="pay">Pagar</button>
                     </div>
                 </form>
             </ModalContent>

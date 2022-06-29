@@ -43,20 +43,16 @@ export const ModalContent = styled.div`
         margin-left: 6px;
         color: #d1da59;
     }
-    .content input, select {
-        width: 50%;
-        height: 25px;
-        margin-top: 15px;
-        text-indent: 2px;
-    }
+    
     .buttons {
         display: flex;
         margin-top: 45px;
+        width: 30%;
+        justify-content: space-between;
     }
     .buttons button {
         width: 70px;
         height: 25px;
-        margin: 0 10px;
         cursor: pointer;
         transition: 0.3s;
     }
