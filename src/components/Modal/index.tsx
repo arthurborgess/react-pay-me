@@ -3,26 +3,39 @@ import { Container, ModalContent } from "./styles";
 import { maskMoney, pasteCheck } from "../InputCurrency";
 import { cards } from "../Cards";
 
-export interface Props {
+interface Props {
     userNameModal: string;
     onClose: () => void;
-}
-interface TransactionPayload {
-    card_number: string;
-    cvv: number;
-    expiry_date: string;
+    userIDModal: number;
 }
 
-export const Modal: React.FC<Props> = ({ onClose, userNameModal }) => {
+export const Modal: React.FC<Props> = ({ onClose, userNameModal, userIDModal }) => {
     const [isPaid, setIsPaid] = useState(false);
     const [successful, setSuccessful] = useState(false);
 
-    const formSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const formSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        setIsPaid(true);
         const formSubmitData = new FormData(event.currentTarget);
         const selectedCard = formSubmitData.get('selectCard');
+        const amount = formSubmitData.get('moneyInput');
+        const cardData = cards.find((card) => card.card_number === selectedCard);
 
+        if (cardData) {
+            (await fetch("https://run.mocky.io/v3/533cd5d7-63d3-4488-bf8d-4bb8c751c989",
+                {
+                    method: "POST",
+                    body: JSON.stringify({
+                        card_number: cardData.card_number,
+                        cvv: cardData.cvv,
+                        expiry_date: cardData.expiry_date,
+                        destination_user_id: userIDModal,
+                        value: amount
+                    })
+                })
+            );
+        }
+
+        setIsPaid(true);
         { selectedCard === '1111111111111111' && setSuccessful(true) }
     }
 
@@ -44,7 +57,7 @@ export const Modal: React.FC<Props> = ({ onClose, userNameModal }) => {
                         O pagamento <strong>{successful ? '' : 'não'}</strong> foi concluído com sucesso.
                     </span> :
                     <form className="content" onSubmit={formSubmit}>
-                        <input type="text" placeholder="R$ 0,00" onKeyPress={maskMoney} onKeyUp={pasteCheck} name="moneyInput" autoComplete="off" />
+                        <input type="text" placeholder="R$ 0,00" onKeyPress={maskMoney} onKeyUp={pasteCheck} name="moneyInput" autoComplete="off" required />
                         <select name="selectCard" >
                             {cards.map((card) => {
                                 return (

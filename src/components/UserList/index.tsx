@@ -12,6 +12,7 @@ interface userListProps {
 export const UserList: React.FC = () => {
     const [users, setUsers] = useState([]);
     const [selectUser, setSelectUser] = useState('');
+    const [userID, setUserID] = useState(0);
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     useEffect(() => {
@@ -24,6 +25,7 @@ export const UserList: React.FC = () => {
     const openModal = (user: string, id: number) => {
         setModalIsOpen(true);
         setSelectUser(user);
+        setUserID(id);
     }
 
     return (
@@ -42,7 +44,7 @@ export const UserList: React.FC = () => {
                     </div>
                 </Container>
             ))}
-            {modalIsOpen && <Modal userNameModal={selectUser} onClose={() => setModalIsOpen(false)} />}
+            {modalIsOpen && <Modal userNameModal={selectUser} userIDModal={userID} onClose={() => setModalIsOpen(false)} />}
         </>
     );
 }
