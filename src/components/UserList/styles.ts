@@ -29,6 +29,9 @@ export const Container = styled.div`
         display: flex;
         flex-direction: column;
     }
+    .userName {
+        margin-bottom: 5px;
+    }
     button {
         width: 80px;
         height: 25px;

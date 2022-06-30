@@ -14,7 +14,7 @@ export const Container = styled.div`
 `
     ;
 export const ModalContent = styled.div`
-    width: 30%;
+    width: 450px;
     height: 250px;
     background-color: #FFF;
     display: flex;
@@ -35,40 +35,49 @@ export const ModalContent = styled.div`
         display: flex;
         align-items: center;
         color: #fff;
+        justify-content: space-between;
     }
     .header span:first-child {
         margin-left: 20px;
+        margin-right: 3px;
+    }
+    .exit {
+        margin-right: 20px;
+        font-size: 18px;
+        cursor: pointer;
     }
     .userName {
-        margin-left: 6px;
         color: #d1da59;
     }
-    .buttons {
-        display: flex;
-        margin-top: 45px;
-        width: 30%;
-        justify-content: space-between;
-    }
-    .buttons button {
-        width: 70px;
+    input {
+        width: 300px; 
         height: 25px;
+        margin-top: 15px;
+        text-indent: 2px;
+    }
+    select {
+        width: 308px; 
+        height: 25px;
+        margin-top: 15px;
+        text-indent: 2px;
+    }
+    button {
+        margin-top: 40px;
+        width: 150px;
+        height: 30px;
         cursor: pointer;
         transition: 0.3s;
-    }
-    .cancel {
-        background-color: transparent;
-        border: none;
-        color: #474a6e;
-    }
-    .cancel:hover {
-        text-decoration: underline;
-    }
-    .pay {
         border: none;
         background-color: #666BA7;
         color: #FFF;
     }
-    .pay:hover {
+    button:hover {
         background-color: #474a6e;
+    }
+    .payment-response {
+        margin-top: 40px;
+        width: 100%;
+        height: 250px;
+        text-align: center;
     }
 `;
