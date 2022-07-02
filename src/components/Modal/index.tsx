@@ -24,6 +24,9 @@ export const Modal: React.FC<Props> = ({ onClose, userNameModal, userIDModal }) 
             (await fetch("https://run.mocky.io/v3/533cd5d7-63d3-4488-bf8d-4bb8c751c989",
                 {
                     method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
                     body: JSON.stringify({
                         card_number: cardData.card_number,
                         cvv: cardData.cvv,
