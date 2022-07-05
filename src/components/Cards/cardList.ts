@@ -1,10 +1,10 @@
-interface TransactionPayload {
+interface CardsProps {
   card_number: string;
   cvv: number;
   expiry_date: string;
 }
 
-export const cards = <TransactionPayload[]>[
+export const cards: CardsProps[] = [
   // valid card
   {
     card_number: '1111111111111111',
@@ -18,3 +18,4 @@ export const cards = <TransactionPayload[]>[
     expiry_date: '01/20',
   },
 ];
+

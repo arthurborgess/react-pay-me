@@ -1,7 +1,8 @@
 import { UserList } from './components/UserList';
 import { Header } from './components/Header';
+import React from 'react';
 
-function App() {
+export const App: React.FC = () => {
   return (
     <div>
       <Header />
@@ -10,4 +11,4 @@ function App() {
   );
 }
 
-export default App;
+

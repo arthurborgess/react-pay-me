@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Container, ModalContent } from "./styles";
-import { maskMoney, pasteCheck } from "../InputCurrency";
-import { cards } from "../Cards";
+import { InputCurrency } from "../InputCurrency";
+import { cards } from "../Cards/cardList";
+import { Cards } from "../Cards";
 
 interface Props {
     userNameModal: string;
@@ -35,7 +36,7 @@ export const Modal: React.FC<Props> = ({ onClose, userNameModal, userIDModal }) 
                         value: amount
                     })
                 })
-            );
+            )
         }
 
         setIsPaid(true);
@@ -46,36 +47,26 @@ export const Modal: React.FC<Props> = ({ onClose, userNameModal, userIDModal }) 
         <Container>
             <ModalContent>
                 <div className="header">
-                    {isPaid ?
-                        <span>Recibo de pagamento</span> :
+                    {isPaid ? (
+                        <span>Recibo de pagamento</span>
+                    ) : (
                         <div>
                             <span>Pagamento para </span>
                             <span className="userName">{userNameModal}</span>
                         </div>
-                    }
+                    )}
                     <div className="exit" onClick={onClose}>❌</div>
                 </div>
-                {isPaid ?
+                {isPaid ? (
                     <span className="payment-response">
                         O pagamento <strong>{successful ? '' : 'não'}</strong> foi concluído com sucesso.
-                    </span> :
+                    </span>
+                ) : (
                     <form className="content" onSubmit={formSubmit}>
-                        <input type="text" placeholder="R$ 0,00" onKeyPress={maskMoney} onKeyUp={pasteCheck} name="moneyInput" autoComplete="off" required />
-                        <select name="selectCard" >
-                            {cards.map((card) => {
-                                return (
-                                    <option
-                                        key={card.card_number}
-                                        value={card.card_number}
-                                    >
-                                        Cartão com final {card.card_number.substring(12)}
-                                    </option>
-                                );
-                            })}
-                        </select>
-                        <button type="submit" className="pay">Pagar</button>
+                        <InputCurrency />
+                        <Cards />
                     </form>
-                }
+                )}
             </ModalContent>
         </Container>
     );
