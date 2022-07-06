@@ -1,17 +1,10 @@
 import { cards } from "./cardList";
 
-interface CardsProps {
-    card_number: string;
-    cvv: number;
-    expiry_date: string;
-}
-
 export const Cards: React.FC = () => {
-    const cardList: CardsProps[] = cards;
     return (
         <>
             <select name="selectCard">
-                {cardList.map((card) => {
+                {cards.map((card) => {
                     return (
                         <option
                             key={card.card_number}
