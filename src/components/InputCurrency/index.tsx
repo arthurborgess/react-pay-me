@@ -17,9 +17,9 @@ export const InputCurrency: React.FC = () => {
 
     }
 
-    const pasteCheck = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'v' && e.ctrlKey) {
-            maskMoney(e);
+    const pasteCheck = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'v' && event.ctrlKey) {
+            maskMoney(event);
         }
     }
 

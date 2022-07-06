@@ -4,13 +4,13 @@ import { InputCurrency } from "../InputCurrency";
 import { cards } from "../Cards/cardList";
 import { Cards } from "../Cards";
 
-interface Props {
+interface ModalProps {
     userNameModal: string;
     onClose: () => void;
     userIDModal: number;
 }
 
-export const Modal: React.FC<Props> = ({ onClose, userNameModal, userIDModal }) => {
+export const Modal: React.FC<ModalProps> = ({ onClose, userNameModal, userIDModal }) => {
     const [isPaid, setIsPaid] = useState(false);
     const [successful, setSuccessful] = useState(false);
 

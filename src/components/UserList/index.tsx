@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container } from './styles';
 import { Modal } from '../Modal';
 
-interface userListProps {
+interface UserListProps {
     id: number;
     name: string;
     username: string;
@@ -30,7 +30,7 @@ export const UserList: React.FC = () => {
 
     return (
         <>
-            {users.map((user: userListProps) => (
+            {users.map((user: UserListProps) => (
                 <Container key={user.id}>
                     <div className='user'>
                         <div className="picture">
