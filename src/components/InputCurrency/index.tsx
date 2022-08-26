@@ -1,37 +1,45 @@
-export const InputCurrency: React.FC = () => {
+import { useState } from "react";
 
-    const maskMoney = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        event.preventDefault();
+export const InputCurrency = () => {
+    const [value, setValue] = useState('');
 
-        if ((/[0-9]+/g).test(event.key)) {
-            event.currentTarget.value += event.key;
+    function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+        e.preventDefault();
+
+        if ((/[0-9]+/g).test(e.key) || e.key === 'Backspace') {
+            let formattedValue: any = value.replace(/[^0-9]/g, '');
+
+            if (e.key === "Backspace") {
+                formattedValue = formattedValue.slice(0, -1);
+                formattedValue = formattedValue / 100;
+                setValue(formatMoney(formattedValue));
+                return
+            }
+            if (value.length < 16) {
+                formattedValue = formattedValue + e.key;
+                formattedValue = formattedValue / 100;
+                setValue(formatMoney(formattedValue));
+            }
         }
-
-        let formattedInput = Number(event.currentTarget.value.replace(/[^0-9]+/g, ''));
-        formattedInput /= 100;
-
-        event.currentTarget.value = Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL'
-        }).format(formattedInput);;
-
     }
-
-    const pasteCheck = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === 'v' && event.ctrlKey) {
-            maskMoney(event);
-        }
+    function formatMoney(value: number): string {
+        return value.toLocaleString('pt-BR', {
+            currency: 'BRL',
+            style: 'currency',
+            minimumFractionDigits: 2
+        })
     }
 
     return (
         <input
-            type="text"
+            type="tel"
+            value={value}
+            onChange={e => setValue(e.target.value)}
+            onKeyDown={handleKeyDown}
             placeholder="R$ 0,00"
-            onKeyPress={maskMoney}
-            onKeyUp={pasteCheck}
             name="moneyInput"
             autoComplete="off"
             required
         />
-    )
-}
+    );
+};
