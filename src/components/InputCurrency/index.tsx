@@ -1,26 +1,12 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 export const InputCurrency = () => {
     const [value, setValue] = useState('');
 
-    function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         e.preventDefault();
-
-        if ((/[0-9]+/g).test(e.key) || e.key === 'Backspace') {
-            let formattedValue: any = value.replace(/[^0-9]/g, '');
-
-            if (e.key === "Backspace") {
-                formattedValue = formattedValue.slice(0, -1);
-                formattedValue = formattedValue / 100;
-                setValue(formatMoney(formattedValue));
-                return
-            }
-            if (value.length < 16) {
-                formattedValue = formattedValue + e.key;
-                formattedValue = formattedValue / 100;
-                setValue(formatMoney(formattedValue));
-            }
-        }
+        let currentValue = e.target.value.replace(/[^0-9]/g, '');
+        setValue(formatMoney(Number(currentValue) / 100));
     }
     function formatMoney(value: number): string {
         return value.toLocaleString('pt-BR', {
@@ -34,12 +20,12 @@ export const InputCurrency = () => {
         <input
             type="tel"
             value={value}
-            onChange={e => setValue(e.target.value)}
-            onKeyDown={handleKeyDown}
+            onChange={handleChange}
             placeholder="R$ 0,00"
             name="moneyInput"
             autoComplete="off"
             required
+            autoFocus
         />
     );
 };
